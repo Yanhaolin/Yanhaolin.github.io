@@ -79,7 +79,7 @@ theme: hexo-theme-one
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/Yanhaolin/Learning.git
+  repository: git@github.com:Yanhaolin/Yanhaolin.github.io.git
   branch: master
 
 #live2d
