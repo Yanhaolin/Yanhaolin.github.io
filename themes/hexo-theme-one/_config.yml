@@ -11,7 +11,7 @@ img:
       - "/img/home.png"
     # 首页右边图片 多个随机 (移动端不显示)
     right_pic:
-      - "/img/right_pic.png"
+      - "/img/right_pic.jpg"
     # 默认文章背景 多个随机
     post_thumbnail: 
       - "/img/index.jpg"

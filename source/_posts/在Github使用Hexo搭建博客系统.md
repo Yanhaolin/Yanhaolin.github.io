@@ -1,6 +1,8 @@
 ---
 title: 在Github使用Hexo搭建博客系统
-tags: [Git,Github]
+tags:
+  - Git
+  - Github
 ---
 
 # 一、配置Github环境
@@ -11,125 +13,134 @@ tags: [Git,Github]
 
 1. 检查ssh-key的设置
 
- ```
-# 第一次安装时没有该目录
-$ cd ~/.ssh
-```
+  ```
+  # 第一次安装时没有该目录
+  $ cd ~/.ssh
+  ``` 
 
-<!--more-->
+<!-- more -->
 
-2. 生成新ssh-key
+ 1. 生成新ssh-key
 
- ```
-# rsa算法，C后面接邮箱账号；表示根据邮箱生成key
-$ ssh-keygen -t rsa -C "example@example.com"
-```
-3. 添加ssh-key到Github
+  ```
+  # rsa算法，C后面接邮箱账号；表示根据邮箱生成key
+  $ ssh-keygen -t rsa -C "example@example.com"
+  ```
 
- 登陆Github-->Account Settings--->SSH Public keys ---> add another public keys
+1. 添加ssh-key到Github
 
-4. 测试
+  登陆Github-->Account Settings--->SSH Public keys ---> add another public keys
 
- ```
-$ ssh -T git@github.com
-```
+2. 测试
 
-5. 设置用户信息
+  ```
+  $ ssh -T git@github.com
+  ```
 
- ```
-## 当电脑只需用到一个Github账号时，可以使用全局的用户信息
-$ git config --global user.name "name"//用户名
-$ git config --global user.email "example@example.com"//邮箱
-```
+3. 设置用户信息
+
+  ```
+  ## 当电脑只需用到一个Github账号时，可以使用全局的用户信息
+  $ git config --global user.name "name"//用户名
+  $ git config --global user.email "example@example.com"//邮箱
+  ```
 
 # 二、当电脑需要多个Github账号切换时
 
 1. 配置第二个账号的ssh-key
 
- ```
-$ssh-keygen -t rsa -C "example@example.com"
-$ssh-add ~/.ssh/id_rsa_second
-```
+  ```
+  $ssh-keygen -t rsa -C "example@example.com"
+  $ssh-add ~/.ssh/id_rsa_second
+  ```
 
 2. 配置ssh-key到github
+
 3. 修改~/.ssh/config文件
 
- ```
-#默认的github
-Host github.com
+  ```
+  #默认的github
+  Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_rsa
-#第二个github
-Host github_second
+  #第二个github
+  Host github_second
   HostName github.com
   IdentityFile ~/.ssh/id_rsa_second
-```
+  ```
 
 4. 使用别名pull/push代码
 
- ```
- git clone git@github_second:username/reponame
-```
+  ```
+  git clone git@github_second:username/reponame
+  ```
 
 5. 取消global用户信息
 
- ```
-git config --global --unset user.name
-git config --global --unset user.email
-```
+  ```
+  git config --global --unset user.name
+  git config --global --unset user.email
+  ```
 
 6. 每次commit前都要执行下面代码
 
- ```
-git config  user.email "example@example.com"
-git config  user.name "name"
-```
+  ```
+  git config  user.email "example@example.com"
+  git config  user.name "name"
+  ```
 
-# 三、生成<github_name>.github.io博客
+# 三、生成
 
-1. 登录github，创建一个repository，命名为<github_name>.github.io
+<github_name>.github.io博客</github_name>
+
+1. 登录github，创建一个repository，命名为
+
+  <github_name>.github.io</github_name>
+
 2. 进入项目，点击Settings，在Github Pages部分点击Launch automatic page generator，下一步，下一步就可以了。
-3. 通过http://<github_name>.github.io访问你的静态站点
+
+3. 通过http://
+
+  <github_name>.github.io访问你的静态站点</github_name>
 
 # 四、使用git提交更新
 
->Tip：当对git命令不熟悉时，可以通过`$git xxx --help`查看帮助文档，注意xxx代表不熟悉的命令，比如clone。也可以查看[廖雪峰的Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)和[Git官网](https://git-scm.com/book/zh/v2)学习。
+> Tip：当对git命令不熟悉时，可以通过`$git xxx --help`查看帮助文档，注意xxx代表不熟悉的命令，比如clone。也可以查看[廖雪峰的Git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)和[Git官网](https://git-scm.com/book/zh/v2)学习。
 
 1. 克隆远程仓库
 
- ```
-# 电脑中只有一个github账号时
-git clone https://github.com/username/reponame
-# 电脑中有两个个github账号时，github_second表示第二个账号的host
-git clone git@github_second:username/reponame
-```
+  ```
+  # 电脑中只有一个github账号时
+  git clone https://github.com/username/reponame
+  # 电脑中有两个个github账号时，github_second表示第二个账号的host
+  git clone git@github_second:username/reponame
+  ```
 
 2. 移除所有文件
 
- ```
-# 进入仓库文件夹（工作区）
-$cd reponame
-# 强制移除所有文件
-$git rm -rf .
-```
+  ```
+  # 进入仓库文件夹（工作区）
+  $cd reponame
+  # 强制移除所有文件
+  $git rm -rf .
+  ```
 
 3. 添加更新到仓库暂存区中
 
- 可以复制要添加的文件到仓库文件夹（工作区）中，然后执行命令
-`$git add *`
+  可以复制要添加的文件到仓库文件夹（工作区）中，然后执行命令 `$git add *`
 
 4. 提交更新到本地仓库
 
- ```
-$git commit -a -m "注释"
-```
+  ```
+  $git commit -a -m "注释"
+  ```
 
 5. 提交更新到远程服务器
 
- ```
-# origin表示源仓库
-$git push origin master
-```
+  ```
+  # origin表示源仓库
+  $git push origin master
+  ```
 
 # 五、分支管理
 
@@ -150,9 +161,7 @@ $git push -u origin newbranch
 
 ## 设置默认分支
 
-在项目的Settings-->Branches下可以修改Default branch
-修改默认分支，其实就是把版本库的头指针HEAD
-指向了其他分支，通过`$git branch -r`（r表示remotes）可以查看所有远程分支和默认分支。
+在项目的Settings-->Branches下可以修改Default branch 修改默认分支，其实就是把版本库的头指针HEAD 指向了其他分支，通过`$git branch -r`（r表示remotes）可以查看所有远程分支和默认分支。
 
 ## 合并分支
 
@@ -169,8 +178,7 @@ $git checkout master
 
 ## 删除分支
 
-Git在删除分支时为避免数据丢失，默认禁止删除尚未合并的分支。所以，如果分支尚未合并，使用`$git branch -d newbranch`会报错。
-使用`$git branch -D newbranch`可以强制删除分支。
+Git在删除分支时为避免数据丢失，默认禁止删除尚未合并的分支。所以，如果分支尚未合并，使用`$git branch -d newbranch`会报错。 使用`$git branch -D newbranch`可以强制删除分支。
 
 ## 删除远程分支
 
@@ -240,7 +248,8 @@ git clone git@github_second:username/reponame
 >> git pull https://github.com/khhhshhh/practice.git develop
 # 把我的代码pull到测试分支中，进行测试
 ```
-2. 合并分支
+
+1. 合并分支
 
 ```
 >> git checkout develop
@@ -251,9 +260,11 @@ git clone git@github_second:username/reponame
 # 七、安装和配置Hexo
 
 ## 需要环境
-  - Node.js
-  - Git
-## 安装
+
+- Node.js
+- Git
+
+  ## 安装
 
 ```
 npm install hexo-cli -g
@@ -347,7 +358,7 @@ Plugins:
 deploy: # 部署位置
   type: github
   repository: https://github.com/cnfeat/cnfeat.github.io.git
-  branch: master     
+  branch: master
 ```
 
 ## 写作
@@ -395,8 +406,7 @@ hexo d == hexo deploy
 
 再次执行`$ hexo g -d`即可快速部署。
 
-----------------
+--------------------------------------------------------------------------------
 
-><span style="font-size:12px">本文标题: <a href="{{ permalink }}">{{ title }}</a>
-文章作者: <a href="http://linlshare.github.io/">林炜富</a>  
-许可协议: <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">©署名-非商用-相同方式共享 4.0</a></span>
+> <span style="font-size:12px">本文标题: <a href="{{ permalink }}">{{ title }}</a>
+> 文章作者: <a href="http://linlshare.github.io/">林炜富</a><br>许可协议: <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">©署名-非商用-相同方式共享 4.0</a></span>
